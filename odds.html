@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Arbitrage Betting</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<link rel="stylesheet" type="text/css" href="neqti.css">
+<script type="text/javascript" src="neqti.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body {
+    font-family: Poppins,system-ui,-apple-system,BlinkMacSystemFont,Roboto,Ubuntu,sans-serif;
+    color: #202220;
+    background-color: #ececec;
+    background-image: linear-gradient(to left,#c7c7d3,transparent 75%);
+}
+input {
+    width: 100%;
+    height: 40px;
+    padding: 0 15px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    border: 1px solid #b8b5b5;
+    background-color: rgba(255, 255, 255, .5);
+}
+input:last-child {
+    width: 80px;
+}
+.max-600 {
+    max-width: 600px;
+    margin: auto;
+}
+</style>
+</head>
+<body>
+<div class="p-3 max-600">
+    <div class="px-1">
+        <div class="pt-5 pb-3 flex column items-center" style="gap: 10px;">
+            <div class="font-medium uppercase" style="letter-spacing: 2px;">Arbitrage Betting</div>
+            <p class="mb-0 text-center">Type with spacing between each odd to check if arbitrage is possible.</p>
+        </div>
+
+        <div class="pb-5 flex" style="gap: 5px;">
+            <input class="odds" type="text" placeholder="Check arbitrage">
+            <input type="text" placeholder="Stake">
+        </div>
+        <div class="odd-loader">
+
+        </div>
+        <div class="html-temp hide">
+            <div class="font-bold mb-1">❌ No Arbitrage Opportunity</div>
+            <div>
+                <div class="font-bold mb-1">✅ Arbitrage Opportunity Found!</div>
+                <div class="mb-2">Recommended Stakes (for ${{stake}} total):</div>
+                <div class="flex column font-size-16 mb-2" style="line-height: 1;">
+                    {{odd}}
+                </div>
+                <div style="line-height: 1;">
+                    <div class="py-1">Total Payout:<span class="pl-2">~${{payout}}</span></div>
+                    <div class="py-1">Guaranteed Profit:<span class="pl-2">~${{profit}}</span></div>
+                </div>
+            </div>
+            <div class="py-1">- {{odd}} odds:<span class="pl-2">${{stake}}</span></div>
+        </div>
+    </div>
+</div>
+<script>
+(function( $, global ) {
+"use strict";//{{stake}}
+Neqti.plugins( "each map is_string isNumeric loop literals" );
+
+function calculateArbitrage( list, stake ) {
+    if ( !list || !is_string( list ) || /[^0-9 \.]/.test( list ) || ( list = list.trim().replace( /\s+/, " " ).split( " " ) ).length <= 1 ) return;
+
+    //default stake is $100
+    if ( !stake || !isNumeric( stake ) || !parseFloat( stake ) ) stake = 100;
+
+    var odds = {},
+        plus = 0,
+        payout = [],
+        profit;
+
+    list = map( list, function( value ) {
+
+        value = parseFloat( value )
+
+        if ( ! isNumeric( value ) || value <= 1  ) return;
+
+        plus += ( odds[ value ] = 1 / value )
+
+        return value
+    } )
+
+    if ( plus >= 1 || list.length <= 1 ) return;
+
+    stake = parseFloat( stake )
+
+    odds = map( odds, function( inverse, odd ) {
+        let amount = ( inverse / plus ) * stake;
+        //payout + profits
+        payout.push( amount * odd );
+
+        return { inverse, amount }
+    } )
+
+    payout = Math.min.apply( null, payout ).toFixed( 2 );
+    profit = ( payout - stake ).toFixed( 2 )
+
+    return { odds, stake, payout, profit };
+}
+
+function arbitrage() {
+    var stake, odds, list,
+        loader = $( ".odd-loader" ),
+        html = $( ".html-temp" ).children(),
+        loop = html.eq( 2 ).html( null ),
+        temp = html.eq( 1 ).html( null ),
+        nope = html.eq( 0 ).html( null ),
+        template;
+
+    $( "input" ).on( "change", function() {
+        let self = $( this ),
+            value = this.value,
+            stakeList = "",
+            hasClass = self.hasClass( "odds" );
+
+        //fix input
+        self.val( value = ( value || "" ).replace( /[^0-9 \.]/g, "" ) )
+
+        console.log(value)
+
+        // odds data
+        odds = calculateArbitrage( hasClass ? ( list = value ) : list, !hasClass ? ( stake = value ) : stake );
+
+        if ( ! odds ) {
+            template = nope;
+        } else {
+            //create stake list temp
+            each( odds.odds, function( obj, odd ) {
+                stakeList += literals( loop, { odd, stake: obj.amount.toFixed( 2 ) })
+            } )
+
+            //add list to obj for literals
+            odds[ "odd" ] = stakeList
+
+            template = literals( temp, odds )
+        }
+
+        loader.html( template )
+    } )
+}
+arbitrage()
+})( Neqti, window )
+</script>
+</body>
+</html>

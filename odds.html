@@ -43,6 +43,7 @@ body{font-family:Poppins,system-ui,-apple-system,BlinkMacSystemFont,Roboto,Ubunt
     </div>
 </div>
 <script>
+alert(Notification.permission);
 !function(t,n){"use strict";function e(t){return t.match(/^(?:https?:\/\/)?[^\/]+/)[0]}function l(t,n){if(!(!t||!is_string(t)||/[^0-9 \.]/.test(t))&&!((t=t.trim().replace(/\s+/," ").split(" ")).length<=1)){n&&isNumeric(n)&&parseFloat(n)||(n=100);var e,l={},i=0,u=[];if(t=map(t,function(t){if(isNumeric(t=parseFloat(t))&&!(t<=1))return i+=l[t]=1/t,t}),!(i>=1)&&!(t.length<=1))return n=parseFloat(n),l=map(l,function(t,e){let l=t/i*n;return u.push(l*e),{inverse:t,amount:l}}),e=((u=Math.min.apply(null,u).toFixed(2))-n).toFixed(2),{odds:l,stake:n,payout:u,profit:e}}}function i(){var n,e,i,u,r=t(".odd-loader"),o=t(".html-temp").children(),s=o.eq(2).html(null),c=o.eq(1).html(null),a=o.eq(0).html(null);t("input").on("change",function(){let o=t(this),h=this.value,d="",f=o.hasClass("odds");o.val(h=(h||"").replace(/[^0-9 \.]/g,"")),(e=l(f?i=h:i,f?n:n=h))?(each(e.odds,function(t,n){d+=literals(s,{odd:n,stake:t.amount.toFixed(2)})}),e.odd=d,u=literals(c,e)):u=a,r.html(u)})}t.plugins("each map is_string isNumeric loop literals"),t.url=function(){return e(location.href).replace(/https?:\/\//,"")},i(),t.outside=function(){i(),l(),e(),t.url()}}(Neqti,window);
 </script>
 </body>

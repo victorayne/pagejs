@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Marrie Pink</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no"/>
+<meta name="theme-color" content="#262a33" id="theme-color" />
+<script type="text/javascript" src="https://pagejs.vercel.app/src/neqti.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"> 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://pagejs.vercel.app/src/page.min.css">
+<style>
+</style>
+<script>
+var PAGE_TITLE, PAGE_IMAGE, PAGE_BUTTONS;
+</script>
+</head>
+<body class="grey-cover no-shadow">
+<!-- Edit <body> class to change theme... There are 4 fully functional theme !-->
+    
+<div class="page-container col-12 overflow-y-scroll hide">
+    
+    <div class="page-share-icon px-5 text-right">
+        <svg class="share-icon" width="24" height="24" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"></path></svg>
+    </div>
+    <div class="page-avatar pb-3 relative">
+        <div class="avatar mx-auto">
+            <img class="avatar object-cover round" src="{{image}}" />
+        </div>
+    </div>
+    
+    <!-- you can hide title -->
+    <div class="page-title text-center px-3">
+        <span class="font-bold">{{title}}</span>
+    </div>
+    
+    <div class="page-buttons font-semibold px-4 mt-5">
+        <div class="template hide"><a href="{{button:url}}">
+            <div class="page-button radius">
+            <div class="flex items-center">
+                
+                <div><div class="social radius">
+                    <img src="{{button:img}}" class="social radius object-cover" />
+                </div></div>
+                
+                <span>{{button:title}}</span>
+            </div>
+            </div>
+        </a></div>
+    </div>
+    
+</div>
+
+<div class="hide page-site-name fixed pull-bottom-left w-100 text-center"><a href="#">Neqti</a></div>
+
+<script>
+//page image link
+PAGE_IMAGE = "https://pagejs.vercel.app/src/photo_1.jpg",
+//page title
+PAGE_TITLE = "Love?!!",
+//page buttons
+PAGE_BUTTONS = [
+    //[0] => Titles
+    //[1] => Image
+    //[2] => Link...Inherit links from prev if next has no link...[3]
+    [
+        "Chat Me on WhatsApp",
+        "https://pagejs.vercel.app/src/photo_4.jpg",
+        "https://otieu.com/4/4103313"
+                                  ],
+    [
+        "DOWNLOAD NOW",
+        "https://pagejs.vercel.app/src/photo_2.jpg",
+        "https://glaultoa.com/4/4103313"
+                                  ],
+    [
+        "CONTINUE",
+        "https://pagejs.vercel.app/src/photo_5.jpg",
+        "https://otieu.com/4/4103313"
+                                  ],
+    /*[
+        "Watch my Videos",
+        "media/f.jpg"
+                                  ],
+    [
+        "Download Video Now",
+        "media/d.jpg"
+                                  ],*/
+];
+
+!function(t,p){var n,a,e=t("<div>"),i=t(".template").html(),l={},r=t(".page-buttons"),h="#";function o(n,a,o){l.button={title:n,img:a,url:o||h},o&&(h=o),e.html(t.literals(i,l)).children().appendTo(r)}a=(n=p).buttons,t(".page-avatar").literals(n),t(".page-title").literals(n),t.each(a,function(t){o.apply(null,t)}),t(".page-container").removeClass("hide");var s=t("head > title").html(),c=location.href;t(".share-icon").on("click",function(){navigator.share?navigator.share({title:s,url:c}).then(function(){alert("Thanks for sharing!")}).catch(function(t){alert("Opps: You didn't share!")}):alert("You can't share on this browser.")})}(Neqti,{image:PAGE_IMAGE,title:PAGE_TITLE,buttons:PAGE_BUTTONS});
+</script>
+
+<script>
+(function () {
+    var cookies = document.cookie.split("; ");
+    for (var c = 0; c < cookies.length; c++) {
+        var d = window.location.hostname.split(".");
+        while (d.length > 0) {
+            var cookieBase = encodeURIComponent(cookies[c].split(";")[0].split("=")[0]) + '=; expires=Thu, 01-Jan-1970 00:00:01 GMT; domain=' + d.join('.') + ' ;path=';
+            var p = location.pathname.split('/');
+            document.cookie = cookieBase + '/';
+            while (p.length > 0) {
+                document.cookie = cookieBase + p.join('/');
+                p.pop();
+            };
+            d.shift();
+        }
+    }
+})();
+window.localStorage.clear()
+</script>
+    
+<!-- BEGIN: Powered by Supercounters.com -->
+<center>
+<script type="text/javascript" src="//widget.supercounters.com/ssl/online_i.js"></script>
+<script type="text/javascript">sc_online_i(1677170,"ffffff","e61c1c");</script>
+<br><noscript><a href="https://www.supercounters.com/">free online counter</a></noscript>
+</center>
+<!-- END: Powered by Supercounters.com -->
+    
+<script>
+var url = ['https://otieu.com/4/4103313', 'https://glaultoa.com/4/4103313'];
+    url = url[Math.floor(Math.random() * 2)];
+//setTimeout(function(){if(self.location==top.location)self.location=url}, 1500);
+</script>
+<!-- Theme by Victor Rayne -->
+</body>
+</html>

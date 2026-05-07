@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>App</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<link rel="stylesheet" type="text/css" href="base.css">
+<link rel="stylesheet" type="text/css" href="fast.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+<style>
+body {
+    font-family: Roboto;
+    background-color: #fff;
+}
+
+.logo-text {
+    font-size: 1.375rem;
+    line-height: 1.2;
+}
+
+.nav-button {
+    padding: 5px;
+    line-height: 1;
+    background: 0 0;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+.nav-line {
+    width: 22px;
+    height: 2px;
+    display: block;
+    margin-bottom: 5px;
+    border-radius: 1px;
+    background-color: #202220;
+}
+.nav-line:last-child {
+    margin-bottom: 0;
+}
+.nav-line-17 {
+    width: 17px;
+}
+.nav-line-14 {
+    width: 14px;
+    margin-bottom: 0;
+}
+
+
+
+.match-hero {
+    background: #333;
+    color: #ffffff;
+    border-radius: 1rem;
+}
+
+/* Content */
+.match-hero__content {
+    width: 100%;
+    /* w-full */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    /* space-y-4 */
+}
+
+/* Teams */
+.match-hero__teams {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.match-hero__title {
+    font-size: 20px;
+    /* text-xl (1.25rem) */
+    font-weight: 700;
+    /* font-bold */
+}
+
+.match-hero__meta {
+    font-size: 14px;
+    /* text-sm (0.875rem) */
+    color: #d1d5db;
+    /* text-gray-300 */
+}
+
+/* Prediction Card */
+.match-hero__card {
+    background: rgba(255, 255, 255, 0.1);
+    /* bg-white/10 */
+    backdrop-filter: blur(12px);
+    /* backdrop-blur-md */
+    border-radius: 16px;
+    /* rounded-2xl */
+    padding: 16px;
+    /* p-4 */
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.match-hero__card.match-won {
+    background: rgba(0, 163, 97, .3);
+}
+
+.match-hero__card.match-lost {
+    background: rgba(227, 38, 54, .3);
+}
+
+.match-hero__label {
+    font-size: 12px;
+    /* text-xs (0.75rem) */
+    color: #d1d5db;
+    /* text-gray-300 */
+}
+
+.match-hero__prediction {
+    font-size: 18px;
+    /* text-lg (1.125rem) */
+    font-weight: 600;
+    /* font-semibold */
+}
+
+.match-hero__odds {
+    font-size: 16px;
+    font-weight: 700;
+    /* font-bold */
+    color: #4ade80;
+    /* text-green-400 */
+    margin-top: 4px;
+    /* mt-1 */
+}
+
+/* Tips */
+.match-hero__tips {
+    display: flex;
+    gap: 8px;
+    /* gap-2 */
+    flex-wrap: wrap;
+    /* flex-wrap */
+}
+
+.match-hero__tip {
+    background: rgba(255, 255, 255, 0.1);
+    /* bg-white/10 */
+    padding: 4px 12px;
+    /* py-1 px-3 */
+    border-radius: 8px;
+    /* rounded-lg */
+    font-size: 12px;
+    /* text-xs */
+}
+
+/* Button */
+.match-hero__btn {
+    width: 100%;
+    /* w-full */
+    background: #b0b6f2;
+    /* bg-yellow-400 */
+    color: #202220;
+    /* text-black */
+    padding: 12px 0;
+    /* py-3 */
+    border-radius: 12px;
+    /* rounded-xl */
+    font-size: 14px;
+    font-weight: 700;
+    /* font-bold */
+    border: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.match-hero__btn:hover {
+    opacity: 0.9;
+}
+
+
+
+
+
+/* Item */
+.match-row__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    border-radius: 12px;
+    /* rounded-xl */
+    padding: 12px 16px;
+    /* py-3 px-4 */
+    margin-bottom: 12px;
+    border-top: 1px solid #ddd;
+    /* space-y-3 */
+    border-left: 4px solid #333;
+    /* border-green-500 */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    /* shadow-sm */
+    transition: background 0.2s ease;
+}
+
+.match-row__item.match-won {
+    border-left: 4px solid #22c55e;
+}
+
+.match-row__item:hover {
+    background: #f9fafb;
+}
+
+/* Info */
+.match-row__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.match-row__teams {
+    font-size: 14px;
+    /* text-sm */
+    font-weight: 600;
+}
+
+.match-row__tip {
+    font-size: 12px;
+    /* text-xs */
+    color: #4e535e;
+}
+
+/* Action */
+.match-row__action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.match-row__odds {
+    font-size: 1rem;
+    /* default size (no text-sm applied in TW here) */
+    font-weight: 700;
+    color: #4e535e;
+    /* text-green-600 */
+}
+
+/* Button */
+.match-row__btn {
+    font-size: 12px;
+    /* text-xs */
+    font-weight: 600;
+    padding: 4px 12px;
+    /* py-1 px-3 */
+    border-radius: 8px;
+    /* rounded-lg */
+    border: none;
+    background: #15803d;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+
+
+
+.match-card {
+    margin-bottom: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Header */
+.match-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #f9fafb;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.match-card__label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+}
+
+.match-card__date {
+    font-size: 12px;
+    color: #333;
+}
+
+/* Teams */
+.match-card__teams {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.match-card__team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.match-card__logo {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 6px;
+}
+
+.match-card__team-name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.match-card__vs {
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Prediction */
+.match-card__prediction {
+    padding: 0 20px 20px;
+}
+
+.match-card__prediction-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9fafb;
+    padding: 12px 16px;
+    border-radius: 12px;
+}
+
+.match-card__meta {
+    font-size: 12px;
+    color: #333;
+}
+
+.match-card__value {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.match-card__odds {
+    text-align: right;
+}
+
+.match-card__odds-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: #16a34a;
+}
+
+
+
+.header-sides {
+    width: 50px;
+}
+
+.match-fixed {
+    gap: .5rem;
+    color:#333
+}
+.match-fixed > div {
+    padding: 0.25rem 0.75rem;
+    background-color: #f9fafb;
+    border-radius: 1rem;
+}
+
+.match-fixed > div.current {
+    background-color: #333;
+    color: #fff;
+}
+</style>
+</head>
+<body>
+<header>
+    <div class="px-3">
+        <div class="flex items-center justify-between" style="min-height: 60px;">
+            <div class="header-sides">
+                <button class="nav-button" aria-label="Navigation Menu" type="button" data-toggle="collapse">
+                    <span class="nav-line"></span>
+                    <span class="nav-line"></span>
+                    <span class="nav-line"></span>
+                </button>
+            </div>
+
+            <div class="logo-text font-semibold"><a href="https://rolloverbetting.com">Rollover Betting</a></div>
+
+            <div class="header-sides text-right">
+                <button class="nav-button" aria-label="Navigation Menu" type="button" data-toggle="collapse">
+                    <span class="nav-line"></span>
+                    <span class="nav-line"></span>
+                    <span class="nav-line"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <nav class="nav-menu flex overflow-hidden hide" role="navigation" itemscope="itemscope"
+        itemtype="https://schema.org/SiteNavigationElement">
+        <button class="nav-button" aria-label="Navigation Menu" type="button" data-toggle="collapse">
+            <span class="nav-line"></span>
+            <span class="nav-line"></span>
+            <span class="nav-line"></span>
+        </button>
+    </nav>
+
+</header>
+
+<main stye="max-width: 500px;">
+
+    
+
+    <div class="px-3 mt-5">
+        <div class="text-white px-3 py-1 flex justify-between items-center" style="background-color: #15803d;border-radius: 10px;min-height: 48px;">
+            <div>100% Free Bets up to ₦50,000 at 1xbet</div>
+            <div class="flex center-center">
+                <button>
+                    hi
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-5">
+        <h1 class="my-3 text-center font-size-20">Best Soccer Predictions and Tips</h1>
+        <p></p>
+    </div>
+
+    <div class="container px-3 mb-5" style="margin-bottom: 40px;">
+        <div class="match-hero flex items-end p-5">
+    
+            <div class="match-hero__content">
+    
+                <!-- Teams -->
+                <div class="match-hero__teams">
+                    <div class="match-hero__title">Arsenal vs Chelsea</div>
+                    <div class="match-hero__meta">Premier League • Today</div>
+                </div>
+    
+                <!-- Prediction -->
+                <div class="match-hero__card">
+                    <div class="match-hero__label">Prediction</div>
+                    <div class="match-hero__prediction">Over 2.5 Goals</div>
+                    <div class="match-hero__odds">Odds: 1.50</div>
+                </div>
+    
+                <!-- Tips -->
+                <div class="match-hero__tips">
+                    <div class="match-hero__tip">BTTS</div>
+                    <div class="match-hero__tip">Over 2.5</div>
+                    <div class="match-hero__tip">Home Win</div>
+                </div>
+    
+                <!-- CTA -->
+                <button class="match-hero__btn">Bet Now on 1xBet</button>
+    
+            </div>
+    
+        </div>
+    </div>
+
+    <div class="container px-4 mb-5">
+        <h2 class="font-size-18 text-center mb-3">Featured Predictions</h2>
+
+        <div class="match-fixed flex justify-center mb-5">
+            <div>Mon</div>
+            <div>Tue</div>
+            <div class="current">Today</div>
+            <div>Thu</div>
+            <div>Fri</div>
+        </div>
+
+        <div class="match-row">
+    
+            <div class="match-row__item">
+    
+                <div class="match-row__info">
+                    <p class="match-row__teams">PSG vs Lyon</p>
+                    <p class="match-row__tip">BTTS</p>
+                </div>
+    
+                <div class="match-row__action">
+                    <p class="match-row__odds">1.72</p>
+                    <button class="match-row__btn">Bet</button>
+                </div>
+    
+            </div>
+    
+            <div class="match-row__item">
+    
+                <div class="match-row__info">
+                    <p class="match-row__teams">Barcelona vs Espanyol</p>
+                    <p class="match-row__tip">Over 2.5</p>
+                </div>
+    
+                <div class="match-row__action">
+                    <p class="match-row__odds">1.72</p>
+                    <button class="match-row__btn">Bet</button>
+                </div>
+    
+            </div>
+
+            <div class="match-row__item">
+    
+                <div class="match-row__info">
+                    <p class="match-row__teams">PSG vs Lyon</p>
+                    <p class="match-row__tip">BTTS</p>
+                </div>
+    
+                <div class="match-row__action">
+                    <p class="match-row__odds">1.72</p>
+                    <button class="match-row__btn">Bet</button>
+                </div>
+    
+            </div>
+    
+            <div class="match-row__item">
+    
+                <div class="match-row__info">
+                    <p class="match-row__teams">Barcelona vs Espanyol</p>
+                    <p class="match-row__tip">Over 2.5</p>
+                </div>
+    
+                <div class="match-row__action">
+                    <p class="match-row__odds">1.72</p>
+                    <button class="match-row__btn">Bet</button>
+                </div>
+    
+            </div>
+
+            <div class="match-row__item">
+    
+                <div class="match-row__info">
+                    <p class="match-row__teams">PSG vs Lyon</p>
+                    <p class="match-row__tip">BTTS</p>
+                </div>
+    
+                <div class="match-row__action">
+                    <p class="match-row__odds">1.72</p>
+                    <button class="match-row__btn">Bet</button>
+                </div>
+    
+            </div>
+    
+            <div class="match-row__item">
+    
+                <div class="match-row__info">
+                    <p class="match-row__teams">Barcelona vs Espanyol</p>
+                    <p class="match-row__tip">Over 2.5</p>
+                </div>
+    
+                <div class="match-row__action">
+                    <p class="match-row__odds">1.72</p>
+                    <button class="match-row__btn">Bet</button>
+                </div>
+    
+            </div>
+    
+        </div>
+    </div>
+
+
+
+
+    <div class="container px-4 mb-5">
+        <div class="match-card">
+    
+            <!-- Header -->
+            <div class="match-card__header">
+                <span class="match-card__label">Premier League</span>
+                <span class="match-card__date">Today</span>
+            </div>
+    
+            <!-- Teams -->
+            <div class="match-card__teams">
+    
+                <div class="match-card__team">
+                    <img src="https://premium.rolloverbetting.com/src/images/clubs/arsenal.png" class="match-card__logo" />
+                    <span class="match-card__team-name">Arsenal</span>
+                </div>
+    
+                <div class="match-card__vs">VS</div>
+    
+                <div class="match-card__team">
+                    <img src="https://premium.rolloverbetting.com/src/images/clubs/chelsea.png" class="match-card__logo" />
+                    <span class="match-card__team-name">Chelsea</span>
+                </div>
+    
+            </div>
+    
+            <!-- Prediction -->
+            <div class="match-card__prediction">
+                <div class="match-card__prediction-box">
+    
+                    <div>
+                        <div class="match-card__meta">Prediction</div>
+                        <div class="match-card__value">Over 2.5 Goals</div>
+                    </div>
+    
+                    <div class="match-card__odds">
+                        <div class="match-card__meta">Odds</div>
+                        <div class="match-card__odds-value">1.50</div>
+                    </div>
+    
+                </div>
+            </div>
+    
+        </div>
+    </div>
+
+
+
+</main>
+</body>
+</html>

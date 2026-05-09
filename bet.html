@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <link rel="stylesheet" type="text/css" href="base.css">
 <link rel="stylesheet" type="text/css" href="fast.css">
+<link rel="stylesheet" type="text/css" href="post.css">
 <!--
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,8 +16,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
 <style>
+html {
+    background-color: #fff;
+}
 body {
-    font-family: Roboto;
+    font-family: Roboto, system-ui, -apple-system, sans-serif;
     background-color: #fff;
 }
 
@@ -49,6 +53,26 @@ body {
 .nav-line-14 {
     width: 14px;
     margin-bottom: 0;
+}
+
+
+.header-sides {
+    width: 50px;
+}
+
+.match-fixed {
+    gap: .5rem;
+    color:#4c4c4c
+}
+.match-fixed > div {
+    padding: 0.25rem 0.75rem;
+    background-color: #f1f1f1;
+    border-radius: 1rem;
+}
+
+.match-fixed > div.current {
+    background-color: #333;
+    color: #fff;
 }
 
 
@@ -185,100 +209,14 @@ body {
 
 
 
-/* Item */
-.match-row__item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #ffffff;
-    border-radius: 12px;
-    /* rounded-xl */
-    padding: 12px 16px;
-    /* py-3 px-4 */
-    margin-bottom: 12px;
-    border-top: 1px solid #ddd;
-    /* space-y-3 */
-    border-left: 4px solid #6b7280;
-    /* border-green-500 */
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-    /* shadow-sm */
-    transition: background 0.2s ease;
-}
-
-.match-row__item.match-won {
-    border-left: 4px solid #22c55e;
-}
-
-.match-row__item:hover {
-    background: #f9fafb;
-}
-
-/* Info */
-.match-row__info {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.match-row__teams {
-    font-size: 14px;
-    /* text-sm */
-    font-weight: 600;
-}
-
-.match-row__tip {
-    font-size: 12px;
-    /* text-xs */
-    color: #4e535e;
-}
-
-/* Action */
-.match-row__action {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-}
-
-.match-row__odds {
-    font-size: 1rem;
-    /* default size (no text-sm applied in TW here) */
-    font-weight: 700;
-    color: #4e535e;
-    /* text-green-600 */
-}
-
-/* Button */
-.match-row__btn {
-    font-size: 12px;
-    /* text-xs */
-    font-weight: 600;
-    padding: 4px 12px;
-    /* py-1 px-3 */
-    border-radius: 8px;
-    /* rounded-lg */
-    border: none;
-    background: #15803d;
-    color: #ffffff;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-
-.match-row__btn:hover {
-    background: #15803d;
-}
-
-
-
 
 .match-card {
     margin-bottom: 30px;
     background: #ffffff;
     border-radius: 16px;
-    border: 1px solid #f1f5f9;
+    border: 1px solid #eee;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-    font-family: system-ui, -apple-system, sans-serif;
 }
 
 /* Header */
@@ -294,12 +232,12 @@ body {
 .match-card__label {
     font-size: 12px;
     font-weight: 600;
-    color: #6b7280;
+    color: #333;
 }
 
 .match-card__date {
     font-size: 12px;
-    color: #6b7280;
+    color: #333;
 }
 
 /* Teams */
@@ -326,7 +264,6 @@ body {
 .match-card__team-name {
     font-size: 14px;
     font-weight: 600;
-    color: #1f2937;
 }
 
 .match-card__vs {
@@ -351,13 +288,12 @@ body {
 
 .match-card__meta {
     font-size: 12px;
-    color: #6b7280;
+    color: #333;
 }
 
 .match-card__value {
     font-size: 14px;
     font-weight: 600;
-    color: #1f2937;
 }
 
 .match-card__odds {
@@ -367,28 +303,133 @@ body {
 .match-card__odds-value {
     font-size: 14px;
     font-weight: 700;
-    color: #16a34a;
+    color: #15803d;
 }
 
 
 
-.header-sides {
-    width: 50px;
-}
-
-.match-fixed {
-    gap: .5rem;
-    color:#4c4c4c
-}
-.match-fixed > div {
-    padding: 0.25rem 0.75rem;
-    background-color: #f1f1f1;
+.league-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    /* gap-2 */
+    padding: 1.25rem 0;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 1rem;
+    /* py-2 */
 }
 
-.match-fixed > div.current {
-    background-color: #333;
-    color: #fff;
+.league-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    /* gap-4 */
+    padding: 0.5rem 1rem;
+    /* rounded-xl */
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+/* hover effect (has-hover) */
+.league-item:hover {
+    background: #f3f4f6;
+    transform: translateY(-1px);
+}
+
+/* images: size-8 md:size-14 */
+.league-item img {
+    width: 2rem;
+    /* 32px */
+    height: 2rem;
+    border-radius: 9999px;
+    object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    .league-item img {
+        width: 3.5rem;
+        /* 56px */
+        height: 3.5rem;
+    }
+}
+
+.league-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+/* line-clamp-1 replacement */
+.league-name {
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 18rem;
+}
+
+.league-country {
+    font-size: 0.75rem;
+    /* text-xs */
+    color: #6b7280;
+}
+
+
+
+aside {
+    gap: 50px;
+}
+
+@media (min-width:900px) {
+    header {
+        margin-bottom: 1.25rem;
+        padding-top: .5rem;
+    }
+
+    main {
+        width: 60%;
+        float: left;
+    }
+    aside {
+        width: 40%;
+        float: left;
+        padding-top: 3.5rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    aside .container:nth-child(1) {
+        margin-top: 2.5rem;
+    }
+
+    aside .container:nth-child(1) {
+        orde: 2;
+    }
+
+    .tagline {
+        padding: 0 0 .75rem;
+    }
+
+    .header-sides {
+        display: none;
+    }
+}
+
+@media (min-width:1100px) {
+    body {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    aside {
+        padding-top: 4rem;
+        padding-left: 2rem!important;
+    }
+
+    .tagline {
+        margin-top: 1.25rem;
+    }
 }
 </style>
 </head>
@@ -425,12 +466,6 @@ body {
         </button>
     </nav>
 
-</header>
-
-<main stye="max-width: 500px;">
-
-    
-
     <div class="px-3 mt-5">
         <div class="text-white px-3 py-1 flex justify-between items-center" style="background-color: #15803d;border-radius: 10px;min-height: 48px;">
             <div>100% Free Bets up to ₦50,000 at 1xbet</div>
@@ -442,12 +477,22 @@ body {
         </div>
     </div>
 
-    <div class="p-5">
-        <h1 class="my-3 text-center font-size-20">Best Soccer Predictions and Tips</h1>
-        <p></p>
-    </div>
+</header>
 
-    <div class="container px-3 mb-5" style="margin-bottom: 40px;">
+
+<div class="w-100 flex hide">
+    <div style="width: 30%;background-color: #15803d;">A</div>
+    <div class="flex" style="width: 70%;">
+        <div style="width: 58%;background-color: #333;">B</div>
+        <div style="width: 42%;background-color: #f1f1f1;">B</div>
+    </div>
+</div>
+
+
+<main>
+    <h1 class="tagline my-3 p-5 text-center font-size-20">Best Soccer Predictions and Tips</h1>
+
+    <div class="container px-3" style="margin-bottom: 40px;">
         <div class="match-hero flex items-end p-5">
     
             <div class="match-hero__content">
@@ -480,7 +525,9 @@ body {
         </div>
     </div>
 
-    <div class="container px-4 mb-5">
+
+
+    <div class="container px-4">
         <h2 class="font-size-18 text-center mb-3">Featured Predictions</h2>
 
         <div class="match-fixed flex justify-center mb-5">
@@ -491,99 +538,140 @@ body {
             <div>Fri</div>
         </div>
 
-        <div class="match-row">
-    
-            <div class="match-row__item">
-    
-                <div class="match-row__info">
-                    <p class="match-row__teams">PSG vs Lyon</p>
-                    <p class="match-row__tip">BTTS</p>
-                </div>
-    
-                <div class="match-row__action">
-                    <p class="match-row__odds">1.72</p>
-                    <button class="match-row__btn">Bet</button>
-                </div>
-    
-            </div>
-    
-            <div class="match-row__item">
-    
-                <div class="match-row__info">
-                    <p class="match-row__teams">Barcelona vs Espanyol</p>
-                    <p class="match-row__tip">Over 2.5</p>
-                </div>
-    
-                <div class="match-row__action">
-                    <p class="match-row__odds">1.72</p>
-                    <button class="match-row__btn">Bet</button>
-                </div>
-    
-            </div>
 
-            <div class="match-row__item">
+        <div class="match-card">
     
-                <div class="match-row__info">
-                    <p class="match-row__teams">PSG vs Lyon</p>
-                    <p class="match-row__tip">BTTS</p>
+            <!-- Header -->
+            <div class="match-card__header">
+                <span class="match-card__label">Premier League</span>
+                <span class="match-card__date">Today</span>
+            </div>
+    
+            <!-- Teams -->
+            <div class="match-card__teams">
+    
+                <div class="match-card__team">
+                    <img src="https://premium.rolloverbetting.com/src/images/clubs/barcelona.png" class="match-card__logo" />
+                    <span class="match-card__team-name">Barcelona</span>
                 </div>
     
-                <div class="match-row__action">
-                    <p class="match-row__odds">1.72</p>
-                    <button class="match-row__btn">Bet</button>
+                <div class="match-card__vs">VS</div>
+    
+                <div class="match-card__team">
+                    <img src="https://premium.rolloverbetting.com/src/images/clubs/real-madrid.png" class="match-card__logo" />
+                    <span class="match-card__team-name">Real Madrid</span>
                 </div>
     
             </div>
     
-            <div class="match-row__item">
+            <!-- Prediction -->
+            <div class="match-card__prediction">
+                <div class="match-card__prediction-box">
     
-                <div class="match-row__info">
-                    <p class="match-row__teams">Barcelona vs Espanyol</p>
-                    <p class="match-row__tip">Over 2.5</p>
+                    <div>
+                        <div class="match-card__meta">Prediction</div>
+                        <div class="match-card__value">Home to Win</div>
+                    </div>
+    
+                    <div class="match-card__odds">
+                        <div class="match-card__meta">Odds</div>
+                        <div class="match-card__odds-value">1.82</div>
+                    </div>
+    
                 </div>
-    
-                <div class="match-row__action">
-                    <p class="match-row__odds">1.72</p>
-                    <button class="match-row__btn">Bet</button>
-                </div>
-    
-            </div>
-
-            <div class="match-row__item">
-    
-                <div class="match-row__info">
-                    <p class="match-row__teams">PSG vs Lyon</p>
-                    <p class="match-row__tip">BTTS</p>
-                </div>
-    
-                <div class="match-row__action">
-                    <p class="match-row__odds">1.72</p>
-                    <button class="match-row__btn">Bet</button>
-                </div>
-    
-            </div>
-    
-            <div class="match-row__item">
-    
-                <div class="match-row__info">
-                    <p class="match-row__teams">Barcelona vs Espanyol</p>
-                    <p class="match-row__tip">Over 2.5</p>
-                </div>
-    
-                <div class="match-row__action">
-                    <p class="match-row__odds">1.72</p>
-                    <button class="match-row__btn">Bet</button>
-                </div>
-    
             </div>
     
         </div>
-    </div>
+
+        <div class="match-card">
+    
+            <!-- Header -->
+            <div class="match-card__header">
+                <span class="match-card__label">Premier League</span>
+                <span class="match-card__date">Today</span>
+            </div>
+    
+            <!-- Teams -->
+            <div class="match-card__teams">
+    
+                <div class="match-card__team">
+                    <img src="https://premium.rolloverbetting.com/src/images/clubs/man-city.png" class="match-card__logo" />
+                    <span class="match-card__team-name">Man City</span>
+                </div>
+    
+                <div class="match-card__vs">VS</div>
+    
+                <div class="match-card__team">
+                    <img src="https://premium.rolloverbetting.com/src/images/clubs/nottingham.png" class="match-card__logo" />
+                    <span class="match-card__team-name">Nottingham</span>
+                </div>
+    
+            </div>
+    
+            <!-- Prediction -->
+            <div class="match-card__prediction">
+                <div class="match-card__prediction-box">
+    
+                    <div>
+                        <div class="match-card__meta">Prediction</div>
+                        <div class="match-card__value">Home Over 1.5 Goals</div>
+                    </div>
+    
+                    <div class="match-card__odds">
+                        <div class="match-card__meta">Odds</div>
+                        <div class="match-card__odds-value">1.43</div>
+                    </div>
+    
+                </div>
+            </div>
+    
+        </div>
+
+        <div class="match-card">
+    
+            <!-- Header -->
+            <div class="match-card__header">
+                <span class="match-card__label">Premier League</span>
+                <span class="match-card__date">Today</span>
+            </div>
+    
+            <!-- Teams -->
+            <div class="match-card__teams">
+    
+                <div class="match-card__team">
+                    <img src="https://premium.rolloverbetting.com/src/images/clubs/arsenal.png" class="match-card__logo" />
+                    <span class="match-card__team-name">Arsenal</span>
+                </div>
+    
+                <div class="match-card__vs">VS</div>
+    
+                <div class="match-card__team">
+                    <img src="https://premium.rolloverbetting.com/src/images/clubs/chelsea.png" class="match-card__logo" />
+                    <span class="match-card__team-name">Chelsea</span>
+                </div>
+    
+            </div>
+    
+            <!-- Prediction -->
+            <div class="match-card__prediction">
+                <div class="match-card__prediction-box">
+    
+                    <div>
+                        <div class="match-card__meta">Prediction</div>
+                        <div class="match-card__value">Over 2.5 Goals</div>
+                    </div>
+    
+                    <div class="match-card__odds">
+                        <div class="match-card__meta">Odds</div>
+                        <div class="match-card__odds-value">1.50</div>
+                    </div>
+    
+                </div>
+            </div>
+    
+        </div>
 
 
-
-
-    <div class="container px-4 mb-5">
         <div class="match-card">
     
             <!-- Header -->
@@ -628,9 +716,249 @@ body {
     
         </div>
     </div>
-
-
-
 </main>
+
+<aside class="recent-posts py-5 px-4 flex column">
+
+    <div class="container">
+        <div class="league-list">
+
+            <h2 class="font-size-18 text-center mb-4">Football Leagues</h2>
+    
+            <a href="#" class="league-item">
+                <img src="https://cdnbfc.com/dq4uxsxpv/nigeria-npfl.webp" alt="Nigeria NPFL">
+                <div class="league-text">
+                    <p class="league-name">Nigeria NPFL</p>
+                    <p class="league-country">Nigeria</p>
+                </div>
+            </a>
+    
+            <a href="#" class="league-item">
+                <img src="https://cdnbfc.com/eagle-predict/england-premier-league-logo.jpg" alt="England Premier League">
+                <div class="league-text">
+                    <p class="league-name">England Premier League</p>
+                    <p class="league-country">England</p>
+                </div>
+            </a>
+    
+            <a href="#" class="league-item">
+                <img src="https://cdnbfc.com/dq4uxsxpv/spain-la-liga.webp" alt="Spain La Liga">
+                <div class="league-text">
+                    <p class="league-name">Spain La Liga</p>
+                    <p class="league-country">Spain</p>
+                </div>
+            </a>
+    
+            <a href="#" class="league-item">
+                <img src="https://cdnbfc.com/dq4uxsxpv/europe-uefa-champions-league.webp" alt="UEFA Champions League">
+                <div class="league-text">
+                    <p class="league-name">Europe UEFA Champions League</p>
+                    <p class="league-country">Europe</p>
+                </div>
+            </a>
+
+            <a href="#" class="league-item">
+                <img src="https://cdnbfc.com/dq4uxsxpv/nigeria-npfl.webp" alt="Nigeria NPFL">
+                <div class="league-text">
+                    <p class="league-name">Nigeria NPFL</p>
+                    <p class="league-country">Nigeria</p>
+                </div>
+            </a>
+    
+            <a href="#" class="league-item">
+                <img src="https://cdnbfc.com/eagle-predict/england-premier-league-logo.jpg" alt="England Premier League">
+                <div class="league-text">
+                    <p class="league-name">England Premier League</p>
+                    <p class="league-country">England</p>
+                </div>
+            </a>
+    
+            <a href="#" class="league-item">
+                <img src="https://cdnbfc.com/dq4uxsxpv/spain-la-liga.webp" alt="Spain La Liga">
+                <div class="league-text">
+                    <p class="league-name">Spain La Liga</p>
+                    <p class="league-country">Spain</p>
+                </div>
+            </a>
+    
+            <a href="#" class="league-item">
+                <img src="https://cdnbfc.com/dq4uxsxpv/europe-uefa-champions-league.webp" alt="UEFA Champions League">
+                <div class="league-text">
+                    <p class="league-name">Europe UEFA Champions League</p>
+                    <p class="league-country">Europe</p>
+                </div>
+            </a>
+
+            <a href="#" class="league-item">
+                <img src="https://cdnbfc.com/dq4uxsxpv/nigeria-npfl.webp" alt="Nigeria NPFL">
+                <div class="league-text">
+                    <p class="league-name">Nigeria NPFL</p>
+                    <p class="league-country">Nigeria</p>
+                </div>
+            </a>
+    
+            <a href="#" class="league-item">
+                <img src="https://cdnbfc.com/eagle-predict/england-premier-league-logo.jpg" alt="England Premier League">
+                <div class="league-text">
+                    <p class="league-name">England Premier League</p>
+                    <p class="league-country">England</p>
+                </div>
+            </a>
+    
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <!-- Header -->
+        <div class="aside-header">
+    
+            <div>
+                <h2 class="aside-title">
+                    Recent Posts
+                </h2>
+    
+                <p class="aside-subtitle">
+                    Fresh updates and news on sport
+                </p>
+            </div>
+    
+            <a href="#" class="view-all-link">
+                View All →
+            </a>
+    
+        </div>
+    
+        <!-- Top Grid -->
+        <div class="posts-grid">
+    
+            <!-- Featured -->
+            <article class="featured-post">
+    
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop"
+                    class="featured-image">
+    
+                <div class="featured-overlay"></div>
+    
+                <div class="featured-content">
+    
+                    <span class="featured-cat">
+                        Technology
+                    </span>
+    
+                    <h3 class="featured-title">
+                        Building modern interfaces with clean UI patterns and reusable systems
+                    </h3>
+    
+                    <p class="featured-description">
+                        Learn how scalable design systems improve frontend workflow and make large projects easier to
+                        maintain.
+                    </p>
+    
+                    <div class="featured-meta">
+                        <span>May 7, 2026</span>
+                        <span>•</span>
+                        <span>8 min read</span>
+                    </div>
+    
+                </div>
+    
+            </article>
+    
+            <!-- Side Posts -->
+            <div class="side-posts">
+    
+                <!-- Item -->
+                <article class="mini-post">
+    
+                    <div class="mini-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop"
+                            class="mini-image">
+                    </div>
+    
+                    <div class="mini-content">
+    
+                        <div>
+                            <span class="mini-cat cat-blue">
+                                Development
+                            </span>
+    
+                            <h3 class="mini-title">
+                                Why component-driven design speeds up large web projects
+                            </h3>
+                        </div>
+    
+                        <span class="mini-date">
+                            May 6, 2026
+                        </span>
+    
+                    </div>
+    
+                </article>
+    
+                <!-- Item -->
+                <article class="mini-post">
+    
+                    <div class="mini-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop"
+                            class="mini-image">
+                    </div>
+    
+                    <div class="mini-content">
+    
+                        <div>
+                            <span class="mini-cat cat-pink">
+                                UI/UX
+                            </span>
+    
+                            <h3 class="mini-title">
+                                Minimal dashboard layouts users instantly understand
+                            </h3>
+                        </div>
+    
+                        <span class="mini-date">
+                            May 5, 2026
+                        </span>
+    
+                    </div>
+    
+                </article>
+    
+                <!-- Item -->
+                <article class="mini-post">
+    
+                    <div class="mini-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop"
+                            class="mini-image">
+                    </div>
+    
+                    <div class="mini-content">
+    
+                        <div>
+                            <span class="mini-cat cat-green">
+                                Business
+                            </span>
+    
+                            <h3 class="mini-title">
+                                Scaling a startup with lean teams and efficient workflows
+                            </h3>
+                        </div>
+    
+                        <span class="mini-date">
+                            May 4, 2026
+                        </span>
+    
+                    </div>
+    
+                </article>
+    
+            </div>
+    
+        </div>
+    </div>
+
+</aside>
+
 </body>
 </html>

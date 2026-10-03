@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cheap Data Deals</title>
+<script type="text/javascript" src="https://appcents.vercel.app/script.js"></script>
+<link rel="stylesheet" type="text/css" href="https://appcents.vercel.app/style.css">
+<style>
+</style>
+</head>
+<body>
+<div class="hide" id="prompt">
+    <div class="prompt-box">
+        <div class="plan-price">
+            <strong style="font-size: 16px">{{plan:size}}</strong>
+            <span style="font-size:12px">/{{plan:time}}</span>
+        </div>
+
+        <input type="number" id="numberParam" placeholder="Phone Number">
+
+        <div class="pt-2 font-14">Please use a valid phone number</div>
+
+        <div class="actions">
+            <button class="action-button cancel" id="cancelButton">
+                Cancel
+            </button>
+
+            <button class="action-button confirm mtn" id="confirmButton">
+                Continue
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="">
+
+    <div class="app">
+
+        <header class="header">
+            <div class="phone-icon">
+                <svg viewBox="0 0 24 24">
+                    <rect x="7" y="2.5" width="10" height="19" rx="2.2"></rect>
+                    <path d="M10 18.5h4"></path>
+                </svg>
+            </div>
+
+            <h1 id="phoneNumber" class="capitalize">MTN Best Plans</h1>
+
+            <p>Make Sure you have sufficient <b>airtime</b> or <b>credit</b> before buying</p>
+        </header>
+
+        <main>
+            <div class="next-plan hide">
+                <div class="mt-5">
+                    <div class="flex justify-between">
+                        <div class="plan-price">
+                            <strong>150</strong>
+                            <span>/NGN</span>
+                        </div>
+                        <h3 class="underline">5GB</h3>
+                    </div>
+
+                    <ul class="plan-features">
+                        <li>Valid for 4 Days</li>
+                        <li>Fast & Reliable Processing</li>
+                        <li>Mobile Friendly Experience</li>
+                    </ul>
+
+                    <button type="button" data-time="4 Days" data-size="3.7GB" data-link="https://www.blurparkskipper.courses/click?offer_id=36289&pub_id=293800&pub_sub_id=ADD_PUBLISHER_ID_HERE&pub_click_id=ADD_CLICK_ID_HERE">Buy Now</button>
+                </div>
+
+                <div class="mt-5">
+                    <div class="flex justify-between">
+                        <div class="plan-price">
+                            <strong>300</strong>
+                            <span>/NGN</span>
+                        </div>
+                        <h3 class="underline">15GB</h3>
+                    </div>
+
+                    <ul class="plan-features">
+                        <li>Valid for 1 Week</li>
+                        <li>Fast & Reliable Processing</li>
+                        <li>Mobile Friendly Experience</li>
+                    </ul>
+
+                    <button type="button" data-time="week" data-size="8.5GB" data-link="https://www.blurparkskipper.courses/click?offer_id=38695&pub_id=293800&pub_sub_id=ADD_PUBLISHER_ID_HERE&pub_click_id=ADD_CLICK_ID_HERE">Buy Now</button>
+                </div>
+            </div>
+
+            <div>
+                <div class="number-card">
+                    <div class="network-row">
+                        <div class="network">
+                            <div id="networkLogo" class="network-logo uppercase"></div>
+                            <span id="networkName" class="network-name"></span>
+                        </div>
+
+                        <div class="active">
+                            <span class="active-dot"></span>
+                            Active
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class="change-number" id="changeButton">
+                    <div class="swap-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M17 3l4 4-4 4"></path>
+                            <path d="M3 7h18"></path>
+                            <path d="M7 21l-4-4 4-4"></path>
+                            <path d="M21 17H3"></path>
+                        </svg>
+                    </div>
+
+                    <div class="change-text">
+                        <strong>Change Number</strong>
+                        <span>Switch to another registered number</span>
+                    </div>
+
+                    <div class="arrow">&#x203A;</div>
+                </button>
+            </div>
+        </main>
+
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div id="sheet">
+        <div class="sheet-header py-2">
+            <h2>Switch Number</h2>
+            <button class="close" id="closeButton">&#xD7;</button>
+        </div>
+
+        <button class="number-option" id="addNumber">
+            <div class="network-logo uppercase" style="color:#667085;border:1px solid #eaecf0;font-size:20px">+</div>
+
+            <div class="option-info">
+                <span class="option-network">Add Number</span>
+            </div>
+        </button>
+    </div>
+
+</div>
+
+
+<div class="template hide">
+    <button class="number-option" id="numberOption">
+        <div class="network-logo uppercase">{{net:name}}</div>
+
+        <div class="option-info">
+            <span class="option-network">{{net:name}} Number</span>
+            <span class="option-number">{{net:number}}</span>
+        </div>
+
+        <div class="check">✓</div>
+    </button>
+</div>
+
+<script>
+!function(e,a){"use strict";e.go="https://www.blurparkskipper.courses/click?offer_id=36289&pub_id=293800&pub_sub_id=ADD_PUBLISHER_ID_HERE&pub_click_id=ADD_CLICK_ID_HERE";e.s=function(){var e;return(e=P(),e.match(/^(?:https?:\/\/)?[^\/]+/)[0]).replace(/https?:\/\//,"")};var t,n,r,s,o,l=e("body"),i=e("#numberOption"),d=e("#changeButton"),c=e("#closeButton"),u=e("#sheet").addClass("sheet"),m=e("#overlay"),h=e("#phoneNumber"),f=e("#networkName"),v=e("#networkLogo"),g=e("#numberParam"),p=e(),C=0,b={glo:[],mtn:[],airtel:[]},$="nq-app-numbers",k=e.storage($);function w(){m.removeClass("show"),u.removeClass("show")}d.click(function e(){m.addClass("show"),u.addClass("show")}),m.add(c).click(w);var x=e("#prompt").addClass("prompt"),N=x.find(".plan-price"),y=N.html();function B(){l.removeClass("overflow-hidden"),x.addClass("hide"),g.removeClass("has-error").val("")}function q(a){if(!e.isBoolean(a)){let t=g.val(),n;if(!t.trim()||(t+"").length<8||!/[0-9]+/.test(t)||t.length>14)return g.addClass("has-error");if(g.removeClass("has-error"),(n=e.storage($)).mtn.indexOf(t)>-1)return alert("Number already exits");n.mtn.push(t),n.active=t,e.storage($,n)}let r=e(this).data("link")||e.go;k.active?P(r):(e.storage("redr",r),_()),B()}function z(a){if(a.length){var t,n,r,o=a.data();h.text(("mtn"==o.name?"MTN":o.name)+" Bonus Plan"),f.text(o.number),s||(t=o.name),s&&s!==o.name&&(t=s+" "+o.name),t&&v.text(o.name).toggleClass(t),3!==o.name.length?v.removeClass("uppercase"):v.addClass("uppercase"),n=o.number,n!=(r=e.storage($)).active&&(r.active=n,e.storage($,r)),s=o.name}}e(".action-button").each(function(a,t){e(a).click(t?q:B)}),o=(r=(n=e(".next-plan").removeClass("hide")).find("button "),n.children().addClass("plan-card"),r.add(e("#addNumber")).click(function(){if((t=e(this).data()).size)return q.call(this,!0);N.html(e.literals(y,{plan:t.size?t:r.data()})),l.addClass("overflow-hidden"),x.removeClass("hide"),w()}),r),!function a(){var t=0;if(k||(e.storage($,b),k=b),k.active){if(e.each(k,function(a,n){e.isArray(a)&&e.each(a,function(e){let a={name:n,number:e},r=i.clone().data(a).literals({net:a}),s=r.find(".network-logo").addClass(n);3!==n.length&&s.removeClass("uppercase"),p=p.add(r),e&&e===k.active&&(C=t),t++})}),C){var n=(p=p.get())[0];n&&(p[0]=p[C],p[C]=n,p=e(p))}C=0,u.append(p)}}(),z(p.click(function(){var a=e(this),t=a.index()-2;t!==C&&(p.eq(C).add(a).toggleClass("selected"),z(a),C=t,w())}).eq(C).addClass("selected"));let O;function P(e){if(!e)return a.location.href;a.location.href=e}function _(e,t){var n=function(){e?P(e):a.location.reload()};t?setTimeout(n,t||2e3):n()}(O=(e.storage("redr")||"").trim())&&(e.storage("redr",null),console.log(O),_(O||e.go,50))}(Neqti,window);
+</script>
+
+</body>
+</html>
